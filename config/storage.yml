@@ -6,6 +6,17 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+
+# Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
+ amazon:
+   service: S3
+   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+   region: nyc1
+   bucket: test-rails
+   endpoint: 'https://nyc1.digitaloceanspaces.com'
+   
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
